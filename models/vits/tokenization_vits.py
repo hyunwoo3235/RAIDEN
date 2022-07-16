@@ -42,7 +42,7 @@ class VITSTokenizer(PreTrainedTokenizer):
     def get_vocab(self):
         return dict(self.encoder)
 
-    def _tokenize(self, text):
+    def _tokenize(self, text, **kwargs):
         text = text.strip()
 
         if self.do_phonemize:

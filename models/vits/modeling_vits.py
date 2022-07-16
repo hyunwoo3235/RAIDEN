@@ -1,5 +1,5 @@
 import math
-from dataclasses import dataclass
+
 import torch
 import torch.utils.checkpoint
 from torch import nn
@@ -7,7 +7,6 @@ from torch.nn import functional as F
 from torch.nn.utils import remove_weight_norm, weight_norm
 from transformers.modeling_utils import PreTrainedModel
 from transformers.utils import logging
-from transformers.file_utils import ModelOutput
 
 import monotonic_align
 from .attentions import Encoder

@@ -27,7 +27,6 @@ def intersperse(lst, item):
 
 
 def kl_divergence(m_p, logs_p, m_q, logs_q):
-    """KL(P||Q)"""
     kl = (logs_q - logs_p) - 0.5
     kl += (
         0.5 * (torch.exp(2.0 * logs_p) + ((m_p - m_q) ** 2)) * torch.exp(-2.0 * logs_q)
@@ -36,7 +35,6 @@ def kl_divergence(m_p, logs_p, m_q, logs_q):
 
 
 def rand_gumbel(shape):
-    """Sample from the Gumbel distribution, protect from overflows."""
     uniform_samples = torch.rand(shape) * 0.99998 + 0.00001
     return -torch.log(-torch.log(uniform_samples))
 
@@ -127,12 +125,6 @@ def sequence_mask(length, max_length=None):
 
 
 def generate_path(duration, mask):
-    """
-    duration: [b, 1, t_x]
-    mask: [b, 1, t_y, t_x]
-    """
-    device = duration.device
-
     b, _, t_y, t_x = mask.shape
     cum_duration = torch.cumsum(duration, -1)
 
